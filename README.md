@@ -8,9 +8,9 @@ The `TintedImage` control supports native renderer implementations for the follo
 - Universal Windows Platform
 
 <p align="center">
-<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/development/CrossPlatformTintedImage/Screenshots/iOSiPhone6sPlus.png" alt="iPhone 6s Screenshot" width="270" height="480">
-<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/development/CrossPlatformTintedImage/Screenshots/AndroidNexus6p.png" alt="Nexus 6 Screenshot" width="270" height="480">
-<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/development/CrossPlatformTintedImage/Screenshots/Windows10MobileLumia920.png" alt="Windows 10 Mobile Screenshot" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/CrossPlatformTintedImage/Screenshots/iOSiPhone6sPlus.png" alt="iPhone 6s Screenshot" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/CrossPlatformTintedImage/Screenshots/AndroidNexus6p.png" alt="Nexus 6 Screenshot" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/CrossPlatformTintedImage/Screenshots/Windows10MobileLumia920.png" alt="Windows 10 Mobile Screenshot" width="270" height="480">
 </p>
 
 ## Installation
