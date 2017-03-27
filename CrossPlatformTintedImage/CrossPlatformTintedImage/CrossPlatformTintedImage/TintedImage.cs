@@ -4,7 +4,7 @@ namespace CrossPlatformTintedImage
 {
     public class TintedImage : Image
     {
-        public static readonly BindableProperty TintColorProperty = BindableProperty.Create(nameof(TintColor), typeof (Color), typeof (TintedImage), Color.Transparent);
+        public static readonly BindableProperty TintColorProperty = BindableProperty.Create(nameof(TintColor), typeof (Color), typeof (TintedImage), Color.Black);
 
         public Color TintColor
         {
