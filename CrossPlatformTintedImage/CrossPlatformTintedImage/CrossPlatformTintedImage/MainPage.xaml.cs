@@ -10,30 +10,30 @@ namespace CrossPlatformTintedImage
 {
     public partial class MainPage : ContentPage
     {
-		bool shouldTint = true;
+	bool shouldTint = true;
 
-		public MainPage()
-		{
+	public MainPage()
+	{
             InitializeComponent();
         }
 
-		void UpdateTint()
-		{
-			if (redSlider == null || greenSlider == null || blueSlider == null)
-				return;
+	void UpdateTint()
+	{
+	    if (redSlider == null || greenSlider == null || blueSlider == null)
+	    	return;
 
-			tintedImage.TintColor = shouldTint ? Color.FromRgb((int)redSlider.Value, (int)greenSlider.Value, (int)blueSlider.Value) : Color.Transparent;
-		}
+	    tintedImage.TintColor = shouldTint ? Color.FromRgb((int)redSlider.Value, (int)greenSlider.Value, (int)blueSlider.Value) : Color.Transparent;
+	}
 
         void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
         {
-			UpdateTint();
-		}
+	    UpdateTint();
+	}
 
-		void OnTintSwitchToggled(object sender, ToggledEventArgs e)
-		{
-			shouldTint = e.Value;
-			UpdateTint();
-		}
+	void OnTintSwitchToggled(object sender, ToggledEventArgs e)
+	{
+	    shouldTint = e.Value;
+	    UpdateTint();
+	}
     }
 }
