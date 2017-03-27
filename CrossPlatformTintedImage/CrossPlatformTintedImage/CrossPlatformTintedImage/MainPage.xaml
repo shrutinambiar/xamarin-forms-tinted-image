@@ -12,7 +12,7 @@
       <RowDefinition Height="10*"/>
       <RowDefinition Height="10*"/>
       <RowDefinition Height="10*"/>
-	  <RowDefinition Height="10*"/>
+      <RowDefinition Height="10*"/>
       <RowDefinition Height="60*"/>
     </Grid.RowDefinitions>
 
@@ -34,11 +34,11 @@
     <Label Text="{Binding Value, StringFormat='{0:F0}'}" BindingContext="{x:Reference greenSlider}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="2" TextColor="Green" FontAttributes="Bold"/>
     <Label Text="{Binding Value, StringFormat='{0:F0}'}" BindingContext="{x:Reference blueSlider}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="2" TextColor="Blue" FontAttributes="Bold"/>
 
-	<StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
-	    <Label Text="Off" VerticalOptions="Center"/>
-		<Switch IsToggled="true" Toggled="OnTintSwitchToggled"/>
-		<Label Text="On" VerticalOptions="Center"/>
-	</StackLayout>
+    <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+      <Label Text="Off" VerticalOptions="Center"/>
+      <Switch IsToggled="true" Toggled="OnTintSwitchToggled"/>
+      <Label Text="On" VerticalOptions="Center"/>
+    </StackLayout>
 		
     <local:TintedImage x:Name="tintedImage" Source="xamagon.png" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill"/>
     
