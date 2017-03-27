@@ -33,8 +33,7 @@ namespace CrossPlatformTintedImage.UWP
         {
             base.OnElementChanged(e);
 
-            if(Control != null)
-                SetupCompositor();
+			SetupCompositor();
         }
 
         protected async override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -45,11 +44,20 @@ namespace CrossPlatformTintedImage.UWP
             {
                 if (effectBrush != null && e.PropertyName == TintedImage.TintColorProperty.PropertyName)
                 {
-                    SetTint(GetNativeColor(((TintedImage)Element).TintColor));
-                    return;
+					if (((TintedImage)Element).TintColor == Color.Transparent)
+					{
+						//Turn off tinting - need to redraw brush
+						effectBrush = null;
+						spriteVisual = null;
+					}
+					else 
+					{
+                    	SetTint(GetNativeColor(((TintedImage)Element).TintColor));
+						return;
+					}
                 }
 
-                bool redrawBrush  = e.PropertyName == VisualElement.XProperty.PropertyName ||
+                bool needsResizing  = e.PropertyName == VisualElement.XProperty.PropertyName ||
                                     e.PropertyName == VisualElement.YProperty.PropertyName ||
                                     e.PropertyName == VisualElement.WidthProperty.PropertyName ||
                                     e.PropertyName == VisualElement.HeightProperty.PropertyName ||
@@ -62,9 +70,9 @@ namespace CrossPlatformTintedImage.UWP
                                     e.PropertyName == VisualElement.AnchorXProperty.PropertyName ||
                                     e.PropertyName == VisualElement.AnchorYProperty.PropertyName;
 
-                if (spriteVisual != null && imageSurface != null && redrawBrush)
+                if (spriteVisual != null && imageSurface != null && needsResizing)
                 {
-                    Debug.WriteLine($"Resizing Sprite Visual and Image Surface for {e.PropertyName} Property");
+                    //Resizing Sprite Visual and Image Surface
 
                     spriteVisual.Size = new Vector2((float)Element.Width, (float)Element.Height);
                     imageSurface.Resize(new Size(Element.Width, Element.Height));
@@ -72,7 +80,7 @@ namespace CrossPlatformTintedImage.UWP
                     return;
                 }
 
-                if ((spriteVisual == null && effectBrush == null) || e.PropertyName == Image.SourceProperty.PropertyName)
+                if (e.PropertyName == Image.SourceProperty.PropertyName || spriteVisual == null || (effectBrush == null && ((TintedImage)Element).TintColor != Color.Transparent))
                     await CreateTintEffectBrushAsync(new Uri($"ms-appx:///{((FileImageSource)Element.Source).File}"));
             }
             catch(Exception ex)
@@ -83,7 +91,6 @@ namespace CrossPlatformTintedImage.UWP
 
         void SetTint(Windows.UI.Color color)
         {
-            Debug.WriteLine("Setting Tint Color");
             effectBrush?.Properties.InsertColor("colorSource.Color", color);
         }
 
@@ -92,8 +99,6 @@ namespace CrossPlatformTintedImage.UWP
             if(Control == null || Element == null || Element.Width < 0 || Element.Height < 0)
                 return;
 
-            Debug.WriteLine("Creating Tint Effect Brush");
-
             SetupCompositor();
 
             spriteVisual = compositor.CreateSpriteVisual();
@@ -101,40 +106,53 @@ namespace CrossPlatformTintedImage.UWP
 
             imageSurface = await generator.CreateImageSurfaceAsync(uri, new Size(Element.Width, Element.Height), ImageSurfaceOptions.DefaultOptimized);
             CompositionSurfaceBrush surfaceBrush = compositor.CreateSurfaceBrush(imageSurface.Surface);
-            
-            Windows.UI.Color nativeColor = GetNativeColor(((TintedImage) Element).TintColor);
 
-            IGraphicsEffect graphicsEffect = new CompositeEffect
-            {
-                Mode = CanvasComposite.DestinationIn,
-                Sources =
-                {
-                    new ColorSourceEffect
-                    {
-                        Name = "colorSource",
-                        Color = nativeColor
-                    },
-                    new CompositionEffectSourceParameter("mask")
-                }
-            };
+            CompositionBrush targetBrush = surfaceBrush;
 
-            CompositionEffectFactory effectFactory = compositor.CreateEffectFactory(graphicsEffect, new[] { "colorSource.Color" });
+			if (((TintedImage)Element).TintColor == Color.Transparent)
+			{
+				//Don't apply tint effect
+				effectBrush = null;
+			}
+			else
+			{
+				//Set target brush to tint effect brush
 
-            effectBrush = effectFactory.CreateBrush();
-            effectBrush.SetSourceParameter("mask", surfaceBrush);
+				Windows.UI.Color nativeColor = GetNativeColor(((TintedImage)Element).TintColor);
 
-            SetTint(nativeColor);
+				IGraphicsEffect graphicsEffect = new CompositeEffect
+				{
+					Mode = CanvasComposite.DestinationIn,
+					Sources =
+					{
+						new ColorSourceEffect
+						{
+							Name = "colorSource",
+							Color = nativeColor
+						},
+						new CompositionEffectSourceParameter("mask")
+					}
+				};
 
-            spriteVisual.Brush = effectBrush;
-            ElementCompositionPreview.SetElementChildVisual(Control, spriteVisual);
+				CompositionEffectFactory effectFactory = compositor.CreateEffectFactory(graphicsEffect,
+					new[] { "colorSource.Color" });
+
+				effectBrush = effectFactory.CreateBrush();
+				effectBrush.SetSourceParameter("mask", surfaceBrush);
+
+				SetTint(nativeColor);
+
+				targetBrush = effectBrush;
+			}
+
+			spriteVisual.Brush = targetBrush;
+			ElementCompositionPreview.SetElementChildVisual(Control, spriteVisual);
         }
 
         void SetupCompositor()
         {
             if (compositor != null && generator != null)
                 return;
-
-            Debug.WriteLine("Setting up Compositor");
 
             compositor = ElementCompositionPreview.GetElementVisual(Control).Compositor;
             generator = CompositionGeneratorFactory.GetCompositionGenerator(compositor);
