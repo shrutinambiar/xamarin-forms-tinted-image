@@ -27,11 +27,21 @@ namespace CrossPlatformTintedImage.iOS
 
         void SetTint()
         {
-            if (Control?.Image != null && Element != null)
-            {
-                Control.Image = Control.Image.ImageWithRenderingMode(UIKit.UIImageRenderingMode.AlwaysTemplate);
-                Control.TintColor = ((TintedImage) Element).TintColor.ToUIColor();
-            }
+			if (Control?.Image == null || Element == null)
+				return;
+
+			if (((TintedImage)Element).TintColor == Color.Transparent)
+			{
+				//Turn off tinting
+				Control.Image = Control.Image.ImageWithRenderingMode(UIKit.UIImageRenderingMode.Automatic);
+				Control.TintColor = null;
+			}
+			else 
+			{ 
+				//Apply tint color
+				Control.Image = Control.Image.ImageWithRenderingMode(UIKit.UIImageRenderingMode.AlwaysTemplate);
+				Control.TintColor = ((TintedImage)Element).TintColor.ToUIColor();
+			}
         }
     }
 }
