@@ -7,7 +7,6 @@ using Xamarin.Forms.Platform.iOS;
 
 namespace CrossPlatformTintedImage.iOS
 {
-
     public class TintedImageRenderer : ImageRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Image> e)
@@ -27,21 +26,21 @@ namespace CrossPlatformTintedImage.iOS
 
         void SetTint()
         {
-			if (Control?.Image == null || Element == null)
-				return;
+            if (Control?.Image == null || Element == null)
+            	return;
 
-			if (((TintedImage)Element).TintColor == Color.Transparent)
-			{
-				//Turn off tinting
-				Control.Image = Control.Image.ImageWithRenderingMode(UIKit.UIImageRenderingMode.Automatic);
-				Control.TintColor = null;
-			}
-			else 
-			{ 
-				//Apply tint color
-				Control.Image = Control.Image.ImageWithRenderingMode(UIKit.UIImageRenderingMode.AlwaysTemplate);
-				Control.TintColor = ((TintedImage)Element).TintColor.ToUIColor();
-			}
+            if (((TintedImage)Element).TintColor == Color.Transparent)
+            {
+            	//Turn off tinting
+            	Control.Image = Control.Image.ImageWithRenderingMode(UIKit.UIImageRenderingMode.Automatic);
+            	Control.TintColor = null;
+            }
+            else 
+            { 
+            	//Apply tint color
+            	Control.Image = Control.Image.ImageWithRenderingMode(UIKit.UIImageRenderingMode.AlwaysTemplate);
+            	Control.TintColor = ((TintedImage)Element).TintColor.ToUIColor();
+            }
         }
     }
 }
