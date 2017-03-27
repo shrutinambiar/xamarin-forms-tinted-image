@@ -33,7 +33,7 @@ namespace CrossPlatformTintedImage.UWP
         {
             base.OnElementChanged(e);
 
-			SetupCompositor();
+            SetupCompositor();
         }
 
         protected async override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -44,17 +44,17 @@ namespace CrossPlatformTintedImage.UWP
             {
                 if (effectBrush != null && e.PropertyName == TintedImage.TintColorProperty.PropertyName)
                 {
-					if (((TintedImage)Element).TintColor == Color.Transparent)
-					{
-						//Turn off tinting - need to redraw brush
-						effectBrush = null;
-						spriteVisual = null;
-					}
-					else 
-					{
-                    	SetTint(GetNativeColor(((TintedImage)Element).TintColor));
-						return;
-					}
+                    if (((TintedImage)Element).TintColor == Color.Transparent)
+                    {
+                        //Turn off tinting - need to redraw brush
+                        effectBrush = null;
+                        spriteVisual = null;
+                    }
+                    else 
+                    {
+                        SetTint(GetNativeColor(((TintedImage)Element).TintColor));
+                        return;
+                    }
                 }
 
                 bool needsResizing  = e.PropertyName == VisualElement.XProperty.PropertyName ||
@@ -109,44 +109,44 @@ namespace CrossPlatformTintedImage.UWP
 
             CompositionBrush targetBrush = surfaceBrush;
 
-			if (((TintedImage)Element).TintColor == Color.Transparent)
-			{
-				//Don't apply tint effect
-				effectBrush = null;
-			}
-			else
-			{
-				//Set target brush to tint effect brush
+            if (((TintedImage)Element).TintColor == Color.Transparent)
+            {
+		//Don't apply tint effect
+		effectBrush = null;
+            }
+            else
+            {
+		//Set target brush to tint effect brush
 
-				Windows.UI.Color nativeColor = GetNativeColor(((TintedImage)Element).TintColor);
+		Windows.UI.Color nativeColor = GetNativeColor(((TintedImage)Element).TintColor);
 
-				IGraphicsEffect graphicsEffect = new CompositeEffect
+		IGraphicsEffect graphicsEffect = new CompositeEffect
+		{
+			Mode = CanvasComposite.DestinationIn,
+			Sources =
+			{
+				new ColorSourceEffect
 				{
-					Mode = CanvasComposite.DestinationIn,
-					Sources =
-					{
-						new ColorSourceEffect
-						{
-							Name = "colorSource",
-							Color = nativeColor
-						},
-						new CompositionEffectSourceParameter("mask")
-					}
-				};
-
-				CompositionEffectFactory effectFactory = compositor.CreateEffectFactory(graphicsEffect,
-					new[] { "colorSource.Color" });
-
-				effectBrush = effectFactory.CreateBrush();
-				effectBrush.SetSourceParameter("mask", surfaceBrush);
-
-				SetTint(nativeColor);
-
-				targetBrush = effectBrush;
+					Name = "colorSource",
+					Color = nativeColor
+				},
+				new CompositionEffectSourceParameter("mask")
 			}
+		};
 
-			spriteVisual.Brush = targetBrush;
-			ElementCompositionPreview.SetElementChildVisual(Control, spriteVisual);
+		CompositionEffectFactory effectFactory = compositor.CreateEffectFactory(graphicsEffect,
+			new[] { "colorSource.Color" });
+
+		effectBrush = effectFactory.CreateBrush();
+		effectBrush.SetSourceParameter("mask", surfaceBrush);
+
+		SetTint(nativeColor);
+
+	        targetBrush = effectBrush;
+            }
+
+            spriteVisual.Brush = targetBrush;
+            ElementCompositionPreview.SetElementChildVisual(Control, spriteVisual);
         }
 
         void SetupCompositor()
