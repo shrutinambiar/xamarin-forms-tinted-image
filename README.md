@@ -33,3 +33,6 @@ The UWP project requires installation of <a href="https://www.nuget.org/packages
 ```
 var tintedImage = new TintedImage { TintColor = Color.Blue };
 ```
+
+## Note
+Tinting can be disabled by setting `TintColor` to Transparent.
