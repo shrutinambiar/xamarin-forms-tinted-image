@@ -33,3 +33,11 @@ The UWP project requires installation of <a href="https://www.nuget.org/packages
 ```
 var tintedImage = new TintedImage { TintColor = Color.Blue };
 ```
+
+## Note
+Tinting can be disabled by setting `TintColor` to Transparent. This is demonstrated in the sample App.
+
+<p align="center">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/development/CrossPlatformTintedImage/Screenshots/iOSiPhone6sPlusTintingOn.png" alt="iPhone 6s Screenshot Tinting On" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/development/CrossPlatformTintedImage/Screenshots/iOSiPhone6sPlusTintingOff.png" alt="iPhone 6s Screenshot Tinting Off" width="270" height="480">
+</p>

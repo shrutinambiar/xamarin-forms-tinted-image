@@ -29,12 +29,22 @@ namespace CrossPlatformTintedImage.Droid
         
         void SetTint()
         {
-            if (Control != null && Element != null)
-            {
-                var colorFilter = new PorterDuffColorFilter(((TintedImage) Element).TintColor.ToAndroid(), PorterDuff.Mode.SrcIn);
-                Control.SetColorFilter(colorFilter);
-            }
+			if (Control == null || Element == null)
+				return;
+
+			if (((TintedImage)Element).TintColor.Equals(Xamarin.Forms.Color.Transparent))
+			{
+				//Turn off tinting
+
+				if (Control.ColorFilter != null)
+					Control.ClearColorFilter();
+
+				return;
+			}
+
+			//Apply tint color
+			var colorFilter = new PorterDuffColorFilter(((TintedImage)Element).TintColor.ToAndroid(), PorterDuff.Mode.SrcIn);
+			Control.SetColorFilter(colorFilter);
         }
     }
 }
-
