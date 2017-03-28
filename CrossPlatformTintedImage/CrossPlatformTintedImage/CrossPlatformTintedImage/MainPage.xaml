@@ -35,6 +35,17 @@
     <Label Text="{Binding Value, StringFormat='{0:F0}'}" BindingContext="{x:Reference blueSlider}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="2" TextColor="Blue" FontAttributes="Bold"/>
 
     <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+      <StackLayout.Resources>
+          <ResourceDictionary>
+              <Style TargetType="Label">
+                  <Setter Property="IsVisible">
+                      <Setter.Value>
+                          <OnPlatform x:TypeArguments="x:Boolean" WinPhone="False" Android="True" iOS="True"/>
+                      </Setter.Value>
+                  </Setter>
+              </Style>
+          </ResourceDictionary>
+      </StackLayout.Resources>
       <Label Text="Off" VerticalOptions="Center"/>
       <Switch IsToggled="true" Toggled="OnTintSwitchToggled"/>
       <Label Text="On" VerticalOptions="Center"/>
