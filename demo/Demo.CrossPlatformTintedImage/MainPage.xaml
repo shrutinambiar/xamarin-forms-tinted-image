@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Demo.CrossPlatformTintedImage"
+             xmlns:controls="clr-namespace:Plugin.CrossPlatformTintedImage.Abstractions;assembly=Plugin.CrossPlatformTintedImage.Abstractions"
+             x:Class="Demo.CrossPlatformTintedImage.MainPage"           
+             Title="Tinted Image Demo"
+             BackgroundColor="Transparent">
+
+    <Grid RowSpacing="20" Padding="20, 40, 20, 20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="54*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="76*"/>
+            <ColumnDefinition Width="12*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Text="R" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" TextColor="Red" FontAttributes="Bold"/>
+        <Label Text="G" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" TextColor="Green" FontAttributes="Bold"/>
+        <Label Text="B" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="0" TextColor="Blue" FontAttributes="Bold"/>
+
+        <Slider x:Name="redSlider" Grid.Row="0" Grid.Column="1" Minimum="0" Maximum="255" VerticalOptions="Center" ValueChanged="OnSliderValueChanged"/>
+        <Slider x:Name="greenSlider" Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="255" VerticalOptions="Center" ValueChanged="OnSliderValueChanged"/>
+        <Slider x:Name="blueSlider" Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="255" VerticalOptions="Center" ValueChanged="OnSliderValueChanged"/>
+
+        <Label Text="{Binding Value, StringFormat='{0:F0}'}" BindingContext="{x:Reference redSlider}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" TextColor="Red" FontAttributes="Bold"/>
+        <Label Text="{Binding Value, StringFormat='{0:F0}'}" BindingContext="{x:Reference greenSlider}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1" Grid.Column="2" TextColor="Green" FontAttributes="Bold"/>
+        <Label Text="{Binding Value, StringFormat='{0:F0}'}" BindingContext="{x:Reference blueSlider}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="2" TextColor="Blue" FontAttributes="Bold"/>
+
+        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Label">
+                        <Setter Property="IsVisible">
+                            <Setter.Value>
+                                <OnPlatform x:TypeArguments="x:Boolean" WinPhone="False" Android="True" iOS="True"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
+            <Label Text="Off" VerticalOptions="Center"/>
+            <Switch IsToggled="true" Toggled="OnTintSwitchToggled"/>
+            <Label Text="On" VerticalOptions="Center"/>
+        </StackLayout>
+
+        <controls:TintedImage x:Name="tintedImage" Source="xamagon.png" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill"/>
+
+    </Grid>
+
+</ContentPage>

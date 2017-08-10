@@ -1,0 +1,2 @@
+C:\xamarin-forms-tinted-image-master\demo\Demo.CrossPlatformTintedImage.UWP\Demo.CrossPlatformTintedImage.UWP.csproj;x86
+C:\xamarin-forms-tinted-image-master\demo\Demo.CrossPlatformTintedImage\Demo.CrossPlatformTintedImage.csproj;neutral
