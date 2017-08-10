@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Plugin.CrossPlatformTintedImage</id>
+    <version>1.0.0</version>
+    <title>Tinted Image Control Plugin for Xamarin.Forms</title>
+    <authors>Shruti Nambiar</authors>
+    <owners>Shruti Nambiar</owners>
+    <projectUrl>https://github.com/shrutinambiar/xamarin-forms-tinted-image</projectUrl>
+    <licenseUrl>https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple custom control for tinting images in Xamarin Forms.</description>
+    <releaseNotes>First Release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>tinted, image, pcl, tinting, xamarin, forms, cross, platform, android, ios, uwp</tags>
+    <dependencies>
+      <group targetFramework="MonoAndroid">
+        <dependency id="Xamarin.Forms" version="2.3.4.247" />
+      </group>
+      <group targetFramework="Xamarin.iOS10">
+        <dependency id="Xamarin.Forms" version="2.3.4.247" />
+      </group>
+      <group targetFramework="uap">
+        <dependency id="CompositionProToolkit" version="0.7.0.1" />
+        <dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="5.3.4" />
+        <dependency id="Win2D.uwp" version="1.21.0" />
+        <dependency id="Xamarin.Forms" version="2.3.4.247" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <!-- Cross-platform reference assemblies -->
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.dll" target="lib\portable-net45+wp80+win8+wpa81\Plugin.CrossPlatformTintedImage.Abstractions.dll" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.xml" target="lib\portable-net45+wp80+win8+wpa81\Plugin.CrossPlatformTintedImage.Abstractions.xml" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.pdb" target="lib\portable-net45+wp80+win8+wpa81\Plugin.CrossPlatformTintedImage.Abstractions.pdb" />
+    
+    <!-- iOS reference assemblies -->
+    <file src="Plugin.CrossPlatformTintedImage.iOS\bin\Release\Plugin.CrossPlatformTintedImage.iOS.dll" target="lib\Xamarin.iOS10\Plugin.CrossPlatformTintedImage.iOS.dll" />
+    <file src="Plugin.CrossPlatformTintedImage.iOS\bin\Release\Plugin.CrossPlatformTintedImage.iOS.xml" target="lib\Xamarin.iOS10\Plugin.CrossPlatformTintedImage.iOS.xml" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.dll" target="lib\Xamarin.iOS10\Plugin.CrossPlatformTintedImage.Abstractions.dll" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.xml" target="lib\Xamarin.iOS10\Plugin.CrossPlatformTintedImage.Abstractions.xml" />
+
+    <!-- Android reference assemblies -->
+    <file src="Plugin.CrossPlatformTintedImage.Android\bin\Release\Plugin.CrossPlatformTintedImage.Android.dll" target="lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Android.dll" />
+    <file src="Plugin.CrossPlatformTintedImage.Android\bin\Release\Plugin.CrossPlatformTintedImage.Android.xml" target="lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Android.xml" />
+    <file src="Plugin.CrossPlatformTintedImage.Android\bin\Release\Plugin.CrossPlatformTintedImage.Android.pdb" target="lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Android.pdb" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.dll" target="lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Abstractions.dll" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.xml" target="lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Abstractions.xml" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.pdb" target="lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Abstractions.pdb" />
+    
+    <!-- UWP reference assemblies -->
+    <file src="Plugin.CrossPlatformTintedImage.UWP\bin\Release\Plugin.CrossPlatformTintedImage.UWP.dll" target="lib\UAP10\Plugin.CrossPlatformTintedImage.UWP.dll" />
+    <file src="Plugin.CrossPlatformTintedImage.UWP\bin\Release\Plugin.CrossPlatformTintedImage.UWP.xml" target="lib\UAP10\Plugin.CrossPlatformTintedImage.UWP.xml" />
+    <file src="Plugin.CrossPlatformTintedImage.UWP\bin\Release\Plugin.CrossPlatformTintedImage.UWP.pdb" target="lib\UAP10\Plugin.CrossPlatformTintedImage.UWP.pdb" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.dll" target="lib\UAP10\Plugin.CrossPlatformTintedImage.Abstractions.dll" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.xml" target="lib\UAP10\Plugin.CrossPlatformTintedImage.Abstractions.xml" />
+    <file src="Plugin.CrossPlatformTintedImage.Abstractions\bin\Release\Plugin.CrossPlatformTintedImage.Abstractions.pdb" target="lib\UAP10\Plugin.CrossPlatformTintedImage.Abstractions.pdb" />
+    
+  </files>
+</package>

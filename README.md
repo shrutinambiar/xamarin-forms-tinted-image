@@ -8,23 +8,30 @@ The `TintedImage` control supports native renderer implementations for the follo
 - Universal Windows Platform
 
 <p align="center">
-<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/CrossPlatformTintedImage/Screenshots/iOSiPhone6sPlus.png" alt="iPhone 6s Screenshot" width="270" height="480">
-<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/CrossPlatformTintedImage/Screenshots/AndroidNexus6p.png" alt="Nexus 6 Screenshot" width="270" height="480">
-<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/CrossPlatformTintedImage/Screenshots/Windows10MobileLumia920.png" alt="Windows 10 Mobile Screenshot" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/demo/Screenshots/iOSiPhone6sPlus.png" alt="iPhone 6s Screenshot" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/demo/Screenshots/AndroidNexus6p.png" alt="Nexus 6 Screenshot" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/demo/Screenshots/Windows10MobileLumia920.png" alt="Windows 10 Mobile Screenshot" width="270" height="480">
 </p>
 
 ## Installation
-The UWP project requires installation of <a href="https://www.nuget.org/packages/Win2D.uwp">Win2d<a/> and <a href="https://www.nuget.org/packages/CompositionProToolkit/">CompositionProToolkit<a/> packages. Apart from <a href="https://www.nuget.org/packages/Xamarin.Forms">Xamarin.Forms<a/>, the Android and iOS projects do not require any additional packages.
+* Available on NuGet: [Plugin.CrossPlatformTintedImage](https://www.nuget.org/packages/Plugin.CrossPlatformTintedImage/)
+* Install into your shared PCL project and Platform projects.
+* Make sure to initialize the renderer in your iOS, Android, and UWP projects as shown below:
+
+```
+Xamarin.Forms.Init();
+TintedImageRenderer.Init();
+```
 
 ## Sample Usage
 - In Xaml:
 ```
 <ContentPage 
     ...
-    xmlns:local="clr-namespace:CrossPlatformTintedImage;assembly=CrossPlatformTintedImage"
+    xmlns:controls="clr-namespace:Plugin.CrossPlatformTintedImage.Abstractions;assembly=Plugin.CrossPlatformTintedImage.Abstractions"
     ...>
     ...
-    <local:TintedImage TintColor="Blue" />
+    <controls:TintedImage TintColor="Blue" />
     ...
 </ContentPage>
 ```
@@ -35,9 +42,9 @@ var tintedImage = new TintedImage { TintColor = Color.Blue };
 ```
 
 ## Note
-Tinting can be disabled by setting `TintColor` to Transparent. This is demonstrated in the sample App.
+Tinting can be disabled by setting `TintColor` to Transparent. This is demonstrated in the demo app.
 
 <p align="center">
-<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/CrossPlatformTintedImage/Screenshots/iOSiPhone6sPlusTintingOn.png" alt="iPhone 6s Screenshot Tinting On" width="270" height="480">
-<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/CrossPlatformTintedImage/Screenshots/iOSiPhone6sPlusTintingOff.png" alt="iPhone 6s Screenshot Tinting Off" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/demo/Screenshots/iOSiPhone6sPlusTintingOn.png" alt="iPhone 6s Screenshot Tinting On" width="270" height="480">
+<img src="https://github.com/shrutinambiar/xamarin-forms-tinted-image/blob/master/demo/Screenshots/iOSiPhone6sPlusTintingOff.png" alt="iPhone 6s Screenshot Tinting Off" width="270" height="480">
 </p>
