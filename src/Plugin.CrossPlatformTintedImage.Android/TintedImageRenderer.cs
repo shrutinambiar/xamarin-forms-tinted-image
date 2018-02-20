@@ -27,7 +27,7 @@ namespace Plugin.CrossPlatformTintedImage.Android
         {
             base.OnElementPropertyChanged(sender, e);
 
-            if (e.PropertyName == TintedImage.TintColorProperty.PropertyName)
+            if (e.PropertyName == TintedImage.TintColorProperty.PropertyName || e.PropertyName == TintedImage.SourceProperty.PropertyName)
                 SetTint();
         }
 
